@@ -1,7 +1,7 @@
 import Homepage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
-import SingInAndSignUpPage from "./pages/sing-in-and-sign-up/sing-in-and-sign-up.component";
+import SingInAndSignUpPage from "./pages/sing-in-and-sign-up/sign-in-and-sign-up.component";
 import {auth, createUserProfileDocument} from "./firebase/firebase.utils";
 import {connect} from "react-redux";
 import {setCurrentUser} from "./redux/user/user.actions";

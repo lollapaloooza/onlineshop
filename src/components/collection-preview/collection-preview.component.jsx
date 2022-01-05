@@ -1,10 +1,10 @@
-import './collection-preview.component.scss';
+import {CollectionPreviewContainer, PreviewTitle, PreviewContainer} from "./collection-preview.styles";
 import CollectionItem from "../collection-item/collection-item.component";
 
 const CollectionPreview = ({title, items}) => (
-    <div className='collection-preview'>
-        <h1>{title}</h1>
-        <div className='preview'>
+    <CollectionPreviewContainer>
+        <PreviewTitle>{title}</PreviewTitle>
+        <PreviewContainer>
             {
                 items
                     .filter((item, id) => id<4)
@@ -12,8 +12,8 @@ const CollectionPreview = ({title, items}) => (
                     <CollectionItem key={item.id} item={item}/>
                 ))
             }
-        </div>
-    </div>
+        </PreviewContainer>
+    </CollectionPreviewContainer>
 )
 
 export default CollectionPreview;

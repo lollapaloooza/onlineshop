@@ -1,6 +1,4 @@
-import './header.styles.scss';
-import {Link} from "react-router-dom";
-import {ReactComponent as Logo} from '../../../src/assets/ebay.svg'
+import {HeaderContainer, LogoContainer, Logo, OptionsContainer, OptionLink} from "./header.styles";
 import {auth} from "../../firebase/firebase.utils";
 import {connect} from "react-redux";
 import CartIcon from "../cart-icon/cart-icon.component";
@@ -10,36 +8,36 @@ import {selectCurrentUser} from "../../redux/user/user.selectors";
 import {createStructuredSelector} from "reselect";
 
 const Header = ({currentUser, hidden}) => (
-    <div className='header'>
-        <Link className='logo-container' to='/'>
-            <Logo className='logo'/>
-        </Link>
-        <div className="options">
-            <Link className='option' to='/shop'>
+    <HeaderContainer>
+        <LogoContainer to='/'>
+            <Logo/>
+        </LogoContainer>
+        <OptionsContainer>
+            <OptionLink to='/shop'>
                 SHOP
-            </Link>
-            <Link className='option' to='/contact'>
+            </OptionLink>
+            <OptionLink to='/contact'>
                 CONTACT
-            </Link>
+            </OptionLink>
             {
                 !currentUser ?
                     (
-                        <Link className='option' to='/signin'>
+                        <OptionLink to='/signin'>
                             SIGN IN
-                        </Link>
+                        </OptionLink>
                     ) :
                     (
-                        <div className='option'
+                        <OptionLink as="div"
                             onClick={()=>auth.signOut()}
-                        >SIGN OUT</div>
+                        >SIGN OUT</OptionLink>
                     )
             }
             <CartIcon/>
-        </div>
+        </OptionsContainer>
         {
             !hidden ? <CartDropdown/> : null
         }
-    </div>
+    </HeaderContainer>
 )
 
 const mapStateToProps = createStructuredSelector({
