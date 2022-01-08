@@ -1,14 +1,19 @@
 import {MenuItemContainer, ContentContainer, ItemSubtitle, ItemTitle, BackgroundImage} from "./menu-item.styles";
-import {withRouter} from "react-router-dom";
+import {useRouteMatch, useHistory} from "react-router-dom";
 
-const MenuItem = ({title, imageUrl, size, history, linkUrl, match}) => (
-    <MenuItemContainer size={size} onClick={()=> history.push(`${match.url}${linkUrl}`)}>
-        <BackgroundImage imageUrl={imageUrl} className='background-image'/>
-        <ContentContainer className='content'>
-            <ItemTitle>{title}</ItemTitle>
-            <ItemSubtitle>SHOP NOW</ItemSubtitle>
-        </ContentContainer>
-    </MenuItemContainer>
-)
+const MenuItem = ({title, imageUrl, size, linkUrl}) => {
+    const history = useHistory();
+    const match = useRouteMatch();
 
-export default withRouter(MenuItem);
+    return (
+        <MenuItemContainer size={size} onClick={()=> history.push(`${match.url}${linkUrl}`)}>
+            <BackgroundImage imageUrl={imageUrl} className='background-image'/>
+            <ContentContainer className='content'>
+                <ItemTitle>{title}</ItemTitle>
+                <ItemSubtitle>SHOP NOW</ItemSubtitle>
+            </ContentContainer>
+        </MenuItemContainer>
+    )
+}
+
+export default MenuItem;
